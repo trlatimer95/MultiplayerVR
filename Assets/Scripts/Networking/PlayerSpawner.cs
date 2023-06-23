@@ -14,24 +14,34 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         NetworkManager.Instance.SessionRunner.AddCallbacks(this);
     }
 
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    {
+        if (player == runner.LocalPlayer)
+        {
+            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
+            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+        }
+    }
+
+    #region Unused Network Callbacks
     public void OnConnectedToServer(NetworkRunner runner)
     {
-       
+
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
     {
-        
+
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
     {
-        
+
     }
 
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
     {
-        
+
     }
 
     public void OnDisconnectedFromServer(NetworkRunner runner)
@@ -41,26 +51,17 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
     {
-        
+
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
-        
+
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
     {
-        
-    }
 
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        if (player == runner.LocalPlayer)
-        {
-            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
-            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
-        }
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -97,4 +98,5 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         
     }
+    #endregion
 }

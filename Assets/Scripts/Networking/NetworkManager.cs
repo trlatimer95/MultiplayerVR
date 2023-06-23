@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public NetworkRunner SessionRunner { get; private set; }
 
     [SerializeField] private GameObject _runnerPrefab;
+    [SerializeField] private TMP_InputField roomCodeInputField;
 
     private void Awake()
     {
@@ -25,11 +27,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-    }
-
-    private async void Start()
-    {
-        StartSharedSession();
     }
 
     public void CreateRunner()
@@ -47,7 +44,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         await LoadScene();
 
         // ConnectSession
-        await Connect();
+        string roomCode = roomCodeInputField.text;
+        await Connect(roomCode);
     }
 
     public async Task LoadScene()
@@ -60,13 +58,13 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
-    private async Task Connect()
+    private async Task Connect(string roomCode)
     {
         var args = new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "TestSession",
-            SceneManager = GetComponent<NetworkSceneManagerDefault>(),
+            SessionName = roomCode,
+            SceneManager = GetComponent<NetworkSceneManagerDefault>(),           
         };
 
         var result = await SessionRunner.StartGame(args);
@@ -81,6 +79,17 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    {
+        Debug.Log("A new player joined the session");
+    }
+
+    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+        Debug.Log("Session Shutdown");
+    }
+
+    #region Unused Network Callbacks
     public void OnConnectedToServer(NetworkRunner runner)
     {
         
@@ -121,11 +130,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         
     }
 
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        Debug.Log("A new player joined the session");
-    }
-
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         
@@ -149,15 +153,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
         
-    }
-
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
-    {
-        Debug.Log("Session Shutdown");
-    }
+    }   
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
         
     }
+    #endregion
 }
