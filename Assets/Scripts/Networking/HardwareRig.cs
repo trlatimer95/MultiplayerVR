@@ -19,6 +19,11 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
         NetworkManager.Instance.SessionRunner.AddCallbacks(this);
     }
 
+    private void Update()
+    {
+        _bodyTransform.rotation = Quaternion.Lerp(_bodyTransform.rotation, Quaternion.Euler(new Vector3(0, _headTransform.rotation.eulerAngles.y, 0)), 0.05f);
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         XRRigInputData inputData = new XRRigInputData();
