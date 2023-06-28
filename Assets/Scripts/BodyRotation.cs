@@ -9,5 +9,6 @@ public class BodyRotation : MonoBehaviour
     private void Update()
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, referenceTransform.rotation.eulerAngles.y, 0)), 0.05f);
+        transform.position = new Vector3(referenceTransform.position.x, transform.position.y, referenceTransform.position.z);
     }
 }

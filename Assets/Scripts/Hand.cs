@@ -50,7 +50,7 @@ public class Hand : MonoBehaviour
         if (triggerCurrent != triggerTarget)
         {
             triggerCurrent = Mathf.MoveTowards(triggerCurrent, triggerTarget, Time.deltaTime * speed);
-            animator.SetFloat(animatorTriggerParam, gripCurrent);
+            animator.SetFloat(animatorTriggerParam, triggerCurrent);
         }
     }
 

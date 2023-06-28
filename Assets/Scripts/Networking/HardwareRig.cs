@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -14,6 +15,11 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
     public Transform _leftHandTransform;
     public Transform _rightHandTransform;
 
+    [Header("Controllers")]
+    public ActionBasedController _leftHandController;
+    public ActionBasedController _rightHandController;
+
+
     private void Start()
     {
         NetworkManager.Instance.SessionRunner.AddCallbacks(this);
@@ -22,6 +28,7 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
     private void Update()
     {
         _bodyTransform.rotation = Quaternion.Lerp(_bodyTransform.rotation, Quaternion.Euler(new Vector3(0, _headTransform.rotation.eulerAngles.y, 0)), 0.05f);
+        _bodyTransform.position = new Vector3(_headTransform.position.x, _bodyTransform.position.y, _headTransform.position.z);
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
@@ -42,6 +49,12 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
 
         inputData.RightHandPosition = _rightHandTransform.position;
         inputData.RightHandRotation = _rightHandTransform.rotation;
+
+        inputData.LeftHandGripValue = _leftHandController.selectAction.action.ReadValue<float>();
+        inputData.LeftHandTriggerValue = _leftHandController.activateAction.action.ReadValue<float>();
+
+        inputData.RightHandGripValue = _rightHandController.selectAction.action.ReadValue<float>();
+        inputData.RightHandTriggerValue = _rightHandController.activateAction.action.ReadValue<float>();
 
         input.Set(inputData);
     }
@@ -143,4 +156,10 @@ public struct XRRigInputData : INetworkInput
 
     public Vector3 RightHandPosition;
     public Quaternion RightHandRotation;
+
+    public float LeftHandGripValue;
+    public float LeftHandTriggerValue;
+
+    public float RightHandGripValue;
+    public float RightHandTriggerValue;
 }

@@ -456,6 +456,8 @@ MonoBehaviour:
   _bodyTransform: {fileID: 1510211444294039704}
   _leftHandTransform: {fileID: 546825399274455799}
   _rightHandTransform: {fileID: 628288303186573194}
+  _leftHandController: {fileID: 6721672492285122680}
+  _rightHandController: {fileID: 5166567526421532002}
 --- !u!1 &692306981027754329
 GameObject:
   m_ObjectHideFlags: 0

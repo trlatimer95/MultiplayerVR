@@ -16,6 +16,22 @@ public class NetworkRig : NetworkBehaviour
     [SerializeField] private NetworkTransform _leftHandTransform;
     [SerializeField] private NetworkTransform _rightHandTransform;
 
+    [Header("Animators")]
+    [SerializeField] private Animator _leftHandAnimator;
+    [SerializeField] private Animator _rightHandAnimator;
+
+    private float _leftHandGripTarget;
+    private float _leftHandGripCurrent;
+    private float _leftHandTriggerTarget;
+    private float _leftHandTriggerCurrent;
+    private float _rightHandGripTarget;
+    private float _rightHandGripCurrent;
+    private float _rightHandTriggerTarget;
+    private float _rightHandTriggerCurrent;
+    
+    private string animatorGripParam = "Grip";
+    private string animatorTriggerParam = "Trigger";
+
     HardwareRig _hardwareRig;
 
     public override void Spawned()
@@ -49,6 +65,11 @@ public class NetworkRig : NetworkBehaviour
             _bodyTransform.transform.SetPositionAndRotation(inputData.BodyPosition, inputData.BodyRotation);
             _leftHandTransform.transform.SetPositionAndRotation(inputData.LeftHandPosition, inputData.LeftHandRotation);
             _rightHandTransform.transform.SetPositionAndRotation(inputData.RightHandPosition, inputData.RightHandRotation);
+
+            _leftHandGripTarget = inputData.LeftHandGripValue;
+            _leftHandTriggerTarget = inputData.LeftHandTriggerValue;
+            _rightHandGripTarget = inputData.RightHandGripValue;
+            _rightHandTriggerTarget = inputData.RightHandTriggerValue;
         }
     }
 
@@ -63,6 +84,28 @@ public class NetworkRig : NetworkBehaviour
             _bodyTransform.InterpolationTarget.SetPositionAndRotation(_hardwareRig._bodyTransform.position, _hardwareRig._bodyTransform.rotation);
             _leftHandTransform.InterpolationTarget.SetPositionAndRotation(_hardwareRig._leftHandTransform.position, _hardwareRig._leftHandTransform.rotation);
             _rightHandTransform.InterpolationTarget.SetPositionAndRotation(_hardwareRig._rightHandTransform.position, _hardwareRig._rightHandTransform.rotation);
+
+            if (_rightHandGripCurrent != _rightHandGripTarget)
+            {
+                _rightHandGripCurrent = Mathf.MoveTowards(_rightHandGripCurrent, _rightHandGripTarget, Time.deltaTime * 10);
+                _rightHandAnimator.SetFloat(animatorGripParam, _rightHandGripCurrent);
+            }
+            if (_rightHandTriggerCurrent != _rightHandTriggerTarget)
+            {
+                _rightHandTriggerCurrent = Mathf.MoveTowards(_rightHandTriggerCurrent, _rightHandTriggerTarget, Time.deltaTime * 10);
+                _rightHandAnimator.SetFloat(animatorTriggerParam, _rightHandTriggerCurrent);
+            }
+
+            if (_leftHandGripCurrent != _leftHandGripTarget)
+            {
+                _leftHandGripCurrent = Mathf.MoveTowards(_leftHandGripCurrent, _leftHandGripTarget, Time.deltaTime * 10);
+                _leftHandAnimator.SetFloat(animatorGripParam, _leftHandGripCurrent);
+            }
+            if (_leftHandTriggerCurrent != _leftHandTriggerTarget)
+            {
+                _leftHandTriggerCurrent = Mathf.MoveTowards(_leftHandTriggerCurrent, _leftHandTriggerTarget, Time.deltaTime * 10);
+                _leftHandAnimator.SetFloat(animatorTriggerParam, _leftHandTriggerCurrent);
+            }
         }
     }
 }
