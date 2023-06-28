@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.XR.OpenXR.Features;
+using Fusion;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class MenuManager : MonoBehaviour
     [Header("Vignette Object")]
     [SerializeField] private GameObject vignette;
 
+    [Header("Network")]
+    [SerializeField] private NetworkManager networkManager;
+
     private ActionBasedSnapTurnProvider snapTurnProvider;
     private ActionBasedContinuousTurnProvider continuousTurnProvider;
     private ActionBasedContinuousMoveProvider continousMoveProvider;
@@ -34,6 +38,7 @@ public class MenuManager : MonoBehaviour
         continuousTurnProvider = playerRig.GetComponent<ActionBasedContinuousTurnProvider>();
         continousMoveProvider = playerRig.GetComponent<ActionBasedContinuousMoveProvider>();
         teleportationProvider = playerRig.GetComponent<TeleportationProvider>();
+        networkManager = FindObjectOfType<NetworkManager>();
 
         if (continuousTurnProvider == null)
             Debug.Log("No Continuous Turn Provider found");
@@ -76,6 +81,14 @@ public class MenuManager : MonoBehaviour
     public void ReloadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LeaveRoom()
+    {
+        if (networkManager != null)
+            networkManager.Disconnect();
+        else
+            Debug.Log("No NetworkManager found");
     }
 
     public void QuitGame()

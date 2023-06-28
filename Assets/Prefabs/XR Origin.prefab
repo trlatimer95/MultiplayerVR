@@ -5161,6 +5161,7 @@ MonoBehaviour:
   rightHandUIRay: {fileID: 8219338310592919220}
   rightHandTeleportRay: {fileID: 6768824190960040111}
   vignette: {fileID: 300331590047026363}
+  networkManager: {fileID: 0}
 --- !u!1 &7796876416953873424
 GameObject:
   m_ObjectHideFlags: 0

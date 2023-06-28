@@ -9,6 +9,8 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
 
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
     private void Start()
     {
         NetworkManager.Instance.SessionRunner.AddCallbacks(this);
@@ -19,9 +21,20 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (player == runner.LocalPlayer)
         {
             Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
-            runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            _spawnedCharacters.Add(player, networkPlayerObject);
         }
     }
+
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    {
+        if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkPlayerObject))
+        {
+            runner.Despawn(networkPlayerObject);
+            _spawnedCharacters.Remove(player);
+        }
+    }
+
 
     #region Unused Network Callbacks
     public void OnConnectedToServer(NetworkRunner runner)
@@ -62,11 +75,6 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
     {
 
-    }
-
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-       
     }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)

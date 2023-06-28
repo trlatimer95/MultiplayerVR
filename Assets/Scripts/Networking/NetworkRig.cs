@@ -8,6 +8,7 @@ public class NetworkRig : NetworkBehaviour
     public bool IsLocalNetworkRig => Object.HasStateAuthority;
 
     [SerializeField] private GameObject _headVisuals;
+    [SerializeField] private GameObject _bodyVisuals;
 
     [Header("Rig Components")]
     [SerializeField] private NetworkTransform _characterTransform;
@@ -47,6 +48,7 @@ public class NetworkRig : NetworkBehaviour
             }
 
             _headVisuals.SetActive(false);
+            _bodyVisuals.SetActive(false);
         }
         else
         {

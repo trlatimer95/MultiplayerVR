@@ -79,6 +79,14 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
+    public void Disconnect()
+    {
+        //SessionRunner.Despawn(SessionRunner.GetPlayerObject(SessionRunner.LocalPlayer.PlayerId));
+        SceneManager.LoadScene(0);
+        SessionRunner.Shutdown();
+        Destroy(gameObject);
+    }
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("A new player joined the session");
@@ -87,6 +95,11 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
         Debug.Log("Session Shutdown");
+    }
+
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    {
+        Debug.Log("Player left");  
     }
 
     #region Unused Network Callbacks
@@ -126,11 +139,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
-    {
-        
-    }
-
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
         
     }
