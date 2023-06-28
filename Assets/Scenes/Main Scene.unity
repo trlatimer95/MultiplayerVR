@@ -1803,24 +1803,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 05d5d7b2831083a42b6d0aa0fff6d7f4, type: 3}
---- !u!1 &284432056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1255711661470296045, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-  m_PrefabInstance: {fileID: 7994316956193195362}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &284432058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284432056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a456d377dc5b05c4b926afcc0db2a494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  referenceTransform: {fileID: 7994316956193195367}
 --- !u!1 &292038177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 05d5d7b2831083a42b6d0aa0fff6d7f4, type: 3}
@@ -4486,6 +4468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NonNativeKeyboard
       objectReference: {fileID: 0}
+    - target: {fileID: 11401954, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 3}
+      propertyPath: InputField
+      value: 
+      objectReference: {fileID: 1658573411}
     - target: {fileID: 11401954, guid: c4e389e44d96da64ea974ab237ce1a9a, type: 3}
       propertyPath: CloseOnInactivity
       value: 1
@@ -10337,6 +10323,10 @@ PrefabInstance:
       value: Exterior
       objectReference: {fileID: 0}
     - target: {fileID: 1631068559021258, guid: 06d045255391ba44193f585e72dfa45a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631068559021258, guid: 06d045255391ba44193f585e72dfa45a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -13025,46 +13015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_PointAction
+    - target: {fileID: 1159746054885224856, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
+      propertyPath: m_InteractionManager
       value: 
-      objectReference: {fileID: 2869410428622933342, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_CancelAction
-      value: 
-      objectReference: {fileID: 2387711382375263438, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_SubmitAction
-      value: 
-      objectReference: {fileID: 3994978066732806534, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_NavigateAction
-      value: 
-      objectReference: {fileID: -7967456002180160679, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_ActiveInputMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_LeftClickAction
-      value: 
-      objectReference: {fileID: 1855836014308820768, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_EnableMouseInput
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_RightClickAction
-      value: 
-      objectReference: {fileID: -2562941478296515153, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_MiddleClickAction
-      value: 
-      objectReference: {fileID: -6289560987278519447, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 771055514511486504, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      propertyPath: m_ScrollWheelAction
-      value: 
-      objectReference: {fileID: 5825226938762934180, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 1875812760}
     - target: {fileID: 1441731105980260238, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
       propertyPath: m_InteractionManager
       value: 
@@ -13129,13 +13083,14 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1875812760}
+    - target: {fileID: 8280679492380255838, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1875812760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1255711661470296045, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 284432058}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c3d60d63bdea2f459301cd4e0ed13ec, type: 3}
 --- !u!20 &7994316956193195364 stripped
 Camera:
