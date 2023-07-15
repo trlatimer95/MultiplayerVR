@@ -12,6 +12,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 {
     public static NetworkManager Instance { get ; private set; }  
     public NetworkRunner SessionRunner { get; private set; }
+    public INetworkSceneManager sceneManager { get; private set; }
 
     [SerializeField] private GameObject _runnerPrefab;
     [SerializeField] private TMP_InputField roomCodeInputField;
@@ -41,11 +42,13 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         CreateRunner();
 
         // Load Scene
-        await LoadScene();
+        //await LoadScene();
 
         // ConnectSession
         string roomCode = roomCodeInputField.text;
-        await Connect(roomCode);
+        //await Connect(roomCode);
+
+        await ConnectFusion(roomCode);
     }
 
     public async Task LoadScene()
@@ -64,7 +67,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             GameMode = GameMode.Shared,
             SessionName = roomCode,
-            SceneManager = GetComponent<NetworkSceneManagerDefault>(),           
+            SceneManager = GetComponent<NetworkSceneManagerDefault>(),      
+            Scene = 1,
         };
 
         var result = await SessionRunner.StartGame(args);
@@ -77,6 +81,21 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         {
             Debug.LogError(result.ErrorMessage);
         }
+    }
+
+    public async Task ConnectFusion(string roomCode)
+    {
+        if (sceneManager == null) sceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>();
+
+        var args = new StartGameArgs()
+        {
+            GameMode = GameMode.Shared,
+            SessionName = roomCode,
+            SceneManager = sceneManager,
+            Scene = SceneManager.GetActiveScene().buildIndex + 1,
+        };
+
+        await SessionRunner.StartGame(args);
     }
 
     public void Disconnect()

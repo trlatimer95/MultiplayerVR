@@ -1,5 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,12 +19,7 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (player == runner.LocalPlayer)
-        {
-            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
-            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
-            _spawnedCharacters.Add(player, networkPlayerObject);
-        }
+        
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -84,7 +80,13 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        
+        if (runner.IsClient)
+        {
+            PlayerRef localPlayer = runner.LocalPlayer;
+            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
+            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, localPlayer);
+            _spawnedCharacters.Add(localPlayer, networkPlayerObject);
+        }
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
