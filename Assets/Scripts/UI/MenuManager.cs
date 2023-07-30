@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Toggle snapTurnToggle;
     [SerializeField] private Toggle teleportToggle;
     [SerializeField] private Toggle vignetteToggle;
+    [SerializeField] private Slider moveSpeedSlider;
 
     [Header("Controllers")]
     [SerializeField] private GameObject rightHandUIRay;
@@ -78,6 +79,12 @@ public class MenuManager : MonoBehaviour
         vignette.SetActive(toggleState);
     }
 
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeedSlider.value = speed;
+        continousMoveProvider.moveSpeed = speed;
+    }
+
     public void ReloadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -107,6 +114,7 @@ public class MenuManager : MonoBehaviour
         public bool UseSnapTurn;
         public bool UseTeleport;
         public bool UseVignette;
+        public float MoveSpeed;
     }
 
     public void SaveSettings()
@@ -115,6 +123,7 @@ public class MenuManager : MonoBehaviour
         settings.UseSnapTurn = snapTurnToggle.isOn;
         settings.UseTeleport = teleportToggle.isOn;
         settings.UseVignette = vignetteToggle.isOn;
+        settings.MoveSpeed = moveSpeedSlider.value;
 
         string json = JsonUtility.ToJson(settings);
 
@@ -132,6 +141,7 @@ public class MenuManager : MonoBehaviour
             ToggleSnapTurn(settings.UseSnapTurn);
             ToggleTeleport(settings.UseTeleport);
             ToggleVignette(settings.UseVignette);
+            SetMoveSpeed(settings.MoveSpeed);
         }
     }
 }
