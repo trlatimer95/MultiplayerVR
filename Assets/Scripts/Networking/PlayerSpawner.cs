@@ -1,8 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
-using Photon.Realtime;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +15,18 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         NetworkManager.Instance.SessionRunner.AddCallbacks(this);
     }
 
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    private void SpawnPlayer(NetworkRunner runner)
     {
-        
+        if (runner.IsClient)
+        {
+            PlayerRef localPlayer = runner.LocalPlayer;
+            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
+            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, localPlayer);
+            _spawnedCharacters.Add(localPlayer, networkPlayerObject);
+        }
     }
 
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    private void DeSpawnPlayer(NetworkRunner runner, PlayerRef player)
     {
         if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkPlayerObject))
         {
@@ -31,8 +35,22 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    {
+        DeSpawnPlayer(runner, player);
+    }
+
+    public void OnSceneLoadDone(NetworkRunner runner)
+    {
+        SpawnPlayer(runner);
+    }
 
     #region Unused Network Callbacks
+    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+    {
+
+    }
+
     public void OnConnectedToServer(NetworkRunner runner)
     {
 
@@ -76,17 +94,6 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)
     {
         
-    }
-
-    public void OnSceneLoadDone(NetworkRunner runner)
-    {
-        if (runner.IsClient)
-        {
-            PlayerRef localPlayer = runner.LocalPlayer;
-            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(1, 5), 0, UnityEngine.Random.Range(1, 5));
-            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, localPlayer);
-            _spawnedCharacters.Add(localPlayer, networkPlayerObject);
-        }
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)

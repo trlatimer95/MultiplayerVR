@@ -1,7 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -28,6 +27,11 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     private void Update()
+    {
+        AlignBodyToHeadset();   
+    }
+
+    private void AlignBodyToHeadset()
     {
         _bodyTransform.rotation = Quaternion.Lerp(_bodyTransform.rotation, Quaternion.Euler(new Vector3(0, _headTransform.rotation.eulerAngles.y, 0)), 0.05f);
         _bodyTransform.position = new Vector3(_headTransform.position.x, _bodyTransform.position.y, _headTransform.position.z);

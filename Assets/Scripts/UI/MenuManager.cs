@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using System.IO;
 using UnityEngine.UI;
-using UnityEngine.XR.OpenXR.Features;
-using Fusion;
 
 public class MenuManager : MonoBehaviour
 {
@@ -52,7 +48,6 @@ public class MenuManager : MonoBehaviour
 
         if (teleportationProvider == null)
             Debug.Log("No teleportation provider found");
-
 
         LoadSettings();
         snapTurnToggle.isOn = snapTurnProvider.enabled;
@@ -107,7 +102,7 @@ public class MenuManager : MonoBehaviour
 #endif
     }
 
-
+    #region Saving/Loading
     [System.Serializable]
     class SettingsData
     {
@@ -144,6 +139,7 @@ public class MenuManager : MonoBehaviour
             SetMoveSpeed(settings.MoveSpeed);
         }
     }
+    #endregion
 }
 
 

@@ -13,7 +13,6 @@ namespace Fusion.XR.Shared
         public static async Task<bool> WaitForStateAuthority(this NetworkObject o, float maxWaitTime = 8)
         {
             float waitStartTime = Time.time;
-            Debug.Log("Object: " + o.name);
             o.RequestStateAuthority();
             while (!o.HasStateAuthority && (Time.time - waitStartTime) < maxWaitTime)
             {

@@ -99,9 +99,7 @@ public class NetworkedGrabbable : NetworkBehaviour
 
         // Ask and wait to receive StateAuthority to move object
         isTakingAuthority = true;
-        Debug.Log("Object: ");
         await Object.WaitForStateAuthority();      
-        //Object.RequestStateAuthority();
         isTakingAuthority = false;
 
         // Obtained authority, set network variables

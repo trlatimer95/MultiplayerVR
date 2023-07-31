@@ -1,7 +1,6 @@
 using Fusion;
 using Fusion.Sockets;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -20,9 +19,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     private void Awake()
     {
         if (Instance != null && Instance != this)
-        {
             Destroy(this.gameObject);
-        }
         else
         {
             Instance = this;
@@ -41,46 +38,9 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         // Create Runner
         CreateRunner();
 
-        // Load Scene
-        //await LoadScene();
-
         // ConnectSession
         string roomCode = roomCodeInputField.text;
-        //await Connect(roomCode);
-
         await ConnectFusion(roomCode);
-    }
-
-    public async Task LoadScene()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
-
-        while (!asyncLoad.isDone)
-        {
-            await Task.Yield();
-        }
-    }
-
-    private async Task Connect(string roomCode)
-    {
-        var args = new StartGameArgs()
-        {
-            GameMode = GameMode.Shared,
-            SessionName = roomCode,
-            SceneManager = GetComponent<NetworkSceneManagerDefault>(),      
-            Scene = 1,
-        };
-
-        var result = await SessionRunner.StartGame(args);
-
-        if (result.Ok)
-        {
-            Debug.Log("StartGame success");
-        }
-        else
-        {
-            Debug.LogError(result.ErrorMessage);
-        }
     }
 
     public async Task ConnectFusion(string roomCode)
@@ -100,7 +60,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void Disconnect()
     {
-        //SessionRunner.Despawn(SessionRunner.GetPlayerObject(SessionRunner.LocalPlayer.PlayerId));
         SceneManager.LoadScene(0);
         SessionRunner.Shutdown();
         Destroy(gameObject);
