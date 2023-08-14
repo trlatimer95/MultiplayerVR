@@ -563,6 +563,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8712204003795946221, guid: 180b8bdfbb1ff594f86baef608654b14, type: 3}
+      propertyPath: Flags
+      value: 2561
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712204003795946221, guid: 180b8bdfbb1ff594f86baef608654b14, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 6723479176344519940
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712204003795946221, guid: 180b8bdfbb1ff594f86baef608654b14, type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: -5744164077618701147
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
