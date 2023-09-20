@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 7830025733487070930}
   - component: {fileID: 7623068037075964408}
   - component: {fileID: 3509183028124418904}
+  - component: {fileID: 5347734868458824455}
   m_Layer: 0
   m_Name: Syringe_Base
   m_TagString: Untagged
@@ -393,6 +394,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7623068037075964408}
   - {fileID: 3509183028124418904}
+  - {fileID: 5347734868458824455}
   SimulationBehaviours: []
 --- !u!114 &7623068037075964408
 MonoBehaviour:
@@ -441,3 +443,19 @@ MonoBehaviour:
   expectedIsKinematic: 1
   extrapolateWhileTakingAuthority: 1
   isTakingAuthority: 0
+--- !u!114 &5347734868458824455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653111227746631877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfde70f885bc3734ba97ebd2c36c9408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  plungerTransform: {fileID: 2165921303378024850}
+  maxPlungerDrawValue: -0.02564
+  drawSpeed: 0.05

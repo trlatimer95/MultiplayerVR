@@ -62,8 +62,8 @@ public class HardwareRig : MonoBehaviour, INetworkRunnerCallbacks
         inputData.RightHandGripValue = _rightHandController.selectAction.action.ReadValue<float>();
         inputData.RightHandTriggerValue = _rightHandController.activateAction.action.ReadValue<float>();
 
-        inputData.LeftHandGrabbing = inputData.LeftHandGripValue > grabThreshold && inputData.LeftHandTriggerValue > grabThreshold;
-        inputData.RightHandGrabbing = inputData.RightHandGripValue > grabThreshold && inputData.RightHandTriggerValue > grabThreshold;
+        inputData.LeftHandGrabbing = inputData.LeftHandGripValue > grabThreshold;
+        inputData.RightHandGrabbing = inputData.RightHandGripValue > grabThreshold;
 
         input.Set(inputData);
     }

@@ -31,6 +31,10 @@ public class NetworkedGrabbable : NetworkBehaviour
     private Quaternion localRotationOffsetWhileTakingAuthority;
     private NetworkHandGrabber grabberWhileTakingAuthority;
 
+    // Events
+    public delegate void OnGrabChanged(bool isGrabbed);
+    public event OnGrabChanged onGrabChanged;
+
     private void Awake()
     {
         networkTransform = GetComponent<NetworkTransform>();
@@ -88,6 +92,7 @@ public class NetworkedGrabbable : NetworkBehaviour
     public void Ungrab()
     {
         CurrentGrabber = null;
+        onGrabChanged?.Invoke(false);
     }
 
     public async void Grab(NetworkHandGrabber newGrabber)
@@ -108,6 +113,7 @@ public class NetworkedGrabbable : NetworkBehaviour
 
         // Start following position in FixedUpdateNetwork
         CurrentGrabber = grabberWhileTakingAuthority;
+        onGrabChanged?.Invoke(true);
     }
 
     void DidGrab()

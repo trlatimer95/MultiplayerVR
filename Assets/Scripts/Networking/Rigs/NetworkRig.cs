@@ -35,6 +35,16 @@ public class NetworkRig : NetworkBehaviour
 
     HardwareRig _hardwareRig;
 
+    public float CurrentLeftHandTriggerValue
+    {
+        get { return _leftHandTriggerCurrent; }
+    }
+
+    public float CurrentRightHandTriggerValue
+    {
+        get { return _rightHandTriggerCurrent; }
+    }
+
     public override void Spawned()
     {
         base.Spawned();
