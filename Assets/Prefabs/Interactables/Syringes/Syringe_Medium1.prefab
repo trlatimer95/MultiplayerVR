@@ -344,6 +344,10 @@ PrefabInstance:
       value: 2305
       objectReference: {fileID: 0}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: NetworkedBehaviours.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
       value: 3757652308607190890
       objectReference: {fileID: 0}
