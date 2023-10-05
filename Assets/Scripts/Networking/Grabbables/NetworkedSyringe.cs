@@ -10,7 +10,14 @@ public class NetworkedSyringe : NetworkBehaviour
     [SerializeField] float maxPlungerDrawValue;
     [SerializeField] float drawSpeed = 5.0f;
 
-    [Networked] private Vector3 localPosition { get; set; } = Vector3.zero;
+    [Header("Fluid Settings")]
+    [SerializeField] Transform fluidTransform;
+    [SerializeField] Transform plungerTipTransform;
+    [SerializeField] Transform syringeEndTransform;
+
+    [Networked] private Vector3 localPlungerPosition { get; set; } = Vector3.zero;
+    [Networked] private Vector3 localFluidPosition { get; set; } = Vector3.zero;
+    [Networked] private Vector3 localFluidScale { get; set; } = Vector3.zero; 
 
     private NetworkedGrabbable grabbable;
     private NetworkHandGrabber currentGrabber;
@@ -18,6 +25,7 @@ public class NetworkedSyringe : NetworkBehaviour
     private float triggerInputValue;
     private float previousInputValue = 0f;
     private bool drawPlunger = true;
+    private Vector3 initialScale;
 
     public override void Spawned()
     {
@@ -25,6 +33,11 @@ public class NetworkedSyringe : NetworkBehaviour
 
         grabbable = GetComponent<NetworkedGrabbable>();
         grabbable.onGrabChanged += GrabbableChanged;
+
+        initialScale = transform.localScale;
+
+        if (plungerTransform.localPosition.y >= 0)
+            fluidTransform.gameObject.SetActive(false);
     }
 
     public override void Despawned(NetworkRunner runner, bool hasState)
@@ -65,6 +78,8 @@ public class NetworkedSyringe : NetworkBehaviour
             drawPlunger = !drawPlunger;
 
         CalculatePlungerLocation();
+
+        ScaleFluid();
     }
 
     public override void Render()
@@ -73,11 +88,33 @@ public class NetworkedSyringe : NetworkBehaviour
 
         CalculatePlungerLocation();
         MovePlunger();
+
+        ScaleFluid();
+    }
+
+    private void ScaleFluid()
+    {
+        if (plungerTransform.localPosition.y >= 0)
+        {
+            if (fluidTransform.gameObject.activeInHierarchy)
+                fluidTransform.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!fluidTransform.gameObject.activeInHierarchy)
+                fluidTransform.gameObject.SetActive(true);
+
+            float distance = Vector3.Distance(plungerTipTransform.position, syringeEndTransform.position);
+            fluidTransform.localScale = new Vector3(fluidTransform.localScale.x, distance / 2f, fluidTransform.localScale.z);
+
+            Vector3 center = (plungerTipTransform.position + syringeEndTransform.position) / 2f;
+            fluidTransform.position = center;
+        }       
     }
 
     private void MovePlunger()
     {
-        plungerTransform.localPosition = localPosition;
+        plungerTransform.localPosition = localPlungerPosition;
     }
 
     private void CalculatePlungerLocation()
@@ -98,6 +135,6 @@ public class NetworkedSyringe : NetworkBehaviour
         plungerTransform.Translate(translation);
 
         // Save new position for network replication
-        localPosition = plungerTransform.localPosition;
+        localPlungerPosition = plungerTransform.localPosition;
     }
 }
