@@ -14,10 +14,10 @@ public class NetworkedSyringe : NetworkBehaviour
     [SerializeField] Transform fluidTransform;
     [SerializeField] Transform plungerTipTransform;
     [SerializeField] Transform syringeEndTransform;
+    [SerializeField] Transform plungerMaxTransform;
+    [SerializeField] Animator anim;
 
     [Networked] private Vector3 localPlungerPosition { get; set; } = Vector3.zero;
-    [Networked] private Vector3 localFluidPosition { get; set; } = Vector3.zero;
-    [Networked] private Vector3 localFluidScale { get; set; } = Vector3.zero; 
 
     private NetworkedGrabbable grabbable;
     private NetworkHandGrabber currentGrabber;
@@ -25,16 +25,21 @@ public class NetworkedSyringe : NetworkBehaviour
     private float triggerInputValue;
     private float previousInputValue = 0f;
     private bool drawPlunger = true;
-    private Vector3 initialScale;
+    private float maxDistance;
 
     public override void Spawned()
     {
         base.Spawned();
 
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
+
+        anim.speed = 0;
+
         grabbable = GetComponent<NetworkedGrabbable>();
         grabbable.onGrabChanged += GrabbableChanged;
 
-        initialScale = transform.localScale;
+        maxDistance = Vector3.Distance(syringeEndTransform.position, plungerMaxTransform.position);
 
         if (plungerTransform.localPosition.y >= 0)
             fluidTransform.gameObject.SetActive(false);
@@ -78,8 +83,6 @@ public class NetworkedSyringe : NetworkBehaviour
             drawPlunger = !drawPlunger;
 
         CalculatePlungerLocation();
-
-        ScaleFluid();
     }
 
     public override void Render()
@@ -89,10 +92,10 @@ public class NetworkedSyringe : NetworkBehaviour
         CalculatePlungerLocation();
         MovePlunger();
 
-        ScaleFluid();
+        DrawFluid();
     }
 
-    private void ScaleFluid()
+    private void DrawFluid()
     {
         if (plungerTransform.localPosition.y >= 0)
         {
@@ -104,11 +107,12 @@ public class NetworkedSyringe : NetworkBehaviour
             if (!fluidTransform.gameObject.activeInHierarchy)
                 fluidTransform.gameObject.SetActive(true);
 
-            float distance = Vector3.Distance(plungerTipTransform.position, syringeEndTransform.position);
-            fluidTransform.localScale = new Vector3(fluidTransform.localScale.x, distance / 2f, fluidTransform.localScale.z);
+            // Find current distance and get percentage of max distance
+            float distance = Vector3.Distance(syringeEndTransform.position, plungerTipTransform.position);
+            float normalizedDistance = distance / maxDistance;
 
-            Vector3 center = (plungerTipTransform.position + syringeEndTransform.position) / 2f;
-            fluidTransform.position = center;
+            // Play animation at normalized distance to get scale and position to match
+            anim.Play("FluidScaleAnim", -1, normalizedDistance);
         }       
     }
 
