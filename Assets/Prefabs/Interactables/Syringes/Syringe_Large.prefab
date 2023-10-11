@@ -458,6 +458,14 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: animController
+      value: 
+      objectReference: {fileID: 1687268025059626312}
+    - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: fluidAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 1702cfa6a7b1b86499fdfe712feb4150, type: 2}
+    - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: fluidTransform
       value: 
       objectReference: {fileID: 2791296867624174288}

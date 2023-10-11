@@ -11,11 +11,12 @@ public class NetworkedSyringe : NetworkBehaviour
     [SerializeField] float drawSpeed = 5.0f;
 
     [Header("Fluid Settings")]
-    [SerializeField] Transform fluidTransform;
+    [SerializeField] GameObject fluidGameObject;
     [SerializeField] Transform plungerTipTransform;
     [SerializeField] Transform syringeEndTransform;
     [SerializeField] Transform plungerMaxTransform;
-    [SerializeField] Animator anim;
+    [SerializeField] Animator animController;
+    [SerializeField] AnimationClip fluidAnimation;
 
     [Networked] private Vector3 localPlungerPosition { get; set; } = Vector3.zero;
 
@@ -31,10 +32,10 @@ public class NetworkedSyringe : NetworkBehaviour
     {
         base.Spawned();
 
-        if (anim == null)
-            anim = GetComponentInChildren<Animator>();
+        if (animController == null)
+            animController = GetComponentInChildren<Animator>();
 
-        anim.speed = 0;
+        animController.speed = 0;
 
         grabbable = GetComponent<NetworkedGrabbable>();
         grabbable.onGrabChanged += GrabbableChanged;
@@ -42,7 +43,7 @@ public class NetworkedSyringe : NetworkBehaviour
         maxDistance = Vector3.Distance(syringeEndTransform.position, plungerMaxTransform.position);
 
         if (plungerTransform.localPosition.y >= 0)
-            fluidTransform.gameObject.SetActive(false);
+            fluidGameObject.SetActive(false);
     }
 
     public override void Despawned(NetworkRunner runner, bool hasState)
@@ -99,20 +100,20 @@ public class NetworkedSyringe : NetworkBehaviour
     {
         if (plungerTransform.localPosition.y >= 0)
         {
-            if (fluidTransform.gameObject.activeInHierarchy)
-                fluidTransform.gameObject.SetActive(false);
+            if (fluidGameObject.activeInHierarchy)
+                fluidGameObject.SetActive(false);
         }
         else
         {
-            if (!fluidTransform.gameObject.activeInHierarchy)
-                fluidTransform.gameObject.SetActive(true);
+            if (!fluidGameObject.activeInHierarchy)
+                fluidGameObject.SetActive(true);
 
             // Find current distance and get percentage of max distance
             float distance = Vector3.Distance(syringeEndTransform.position, plungerTipTransform.position);
             float normalizedDistance = distance / maxDistance;
 
             // Play animation at normalized distance to get scale and position to match
-            anim.Play("FluidScaleAnim", -1, normalizedDistance);
+            animController.Play(fluidAnimation.name, 0, normalizedDistance);
         }       
     }
 

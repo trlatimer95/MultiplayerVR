@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &690448753161764578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6673862740810723327}
+  m_Layer: 0
+  m_Name: SyringeEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6673862740810723327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690448753161764578}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04096, y: 0.03679, z: 0}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2169146783792028270}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830215179509207128
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +43,7 @@ GameObject:
   - component: {fileID: 5951612615989282506}
   - component: {fileID: 5890861837037135087}
   m_Layer: 0
-  m_Name: Mesh_001
+  m_Name: Syringe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +115,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3852812054204051300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8842720984674390512}
+  m_Layer: 0
+  m_Name: PlungerTipTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8842720984674390512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3852812054204051300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.04098, y: 0.03646, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2642245729831075707}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4016644192440394471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661330824201785644}
+  m_Layer: 0
+  m_Name: PlungerMaxTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661330824201785644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016644192440394471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0409, y: 0.00854, z: 0.00004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2169146783792028270}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4446000992490016494
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2169146783792028270}
   - component: {fileID: 2055666079461171575}
-  - component: {fileID: 1387171717358089807}
+  - component: {fileID: 1532168289589823259}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -117,6 +210,8 @@ Transform:
   - {fileID: 2427209492765604159}
   - {fileID: 2165921303378024850}
   - {fileID: 727610013393800440}
+  - {fileID: 6673862740810723327}
+  - {fileID: 661330824201785644}
   m_Father: {fileID: 2966820179536684114}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,34 +236,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0043595633, y: 0.040536843, z: 0.004299164}
   m_Center: {x: -0.040889107, y: 0.020012658, z: 0.0000594457}
---- !u!114 &1387171717358089807
-MonoBehaviour:
+--- !u!95 &1532168289589823259
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4446000992490016494}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 2165921303378024850}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5f35f9d349438f46af00fce885ba798, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4576880549926507221
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,8 +281,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4576880549926507221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.02201, z: 0}
+  m_LocalScale: {x: 1, y: 0.014, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6211021519966006099}
@@ -213,7 +301,7 @@ GameObject:
   - component: {fileID: 1016889602925291185}
   - component: {fileID: 3097724254794772537}
   m_Layer: 0
-  m_Name: Mesh_003
+  m_Name: Plunger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6158289935170061095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.00415, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -297,7 +385,7 @@ GameObject:
   - component: {fileID: 3790213322516317357}
   - component: {fileID: 7789531995991947595}
   m_Layer: 0
-  m_Name: Mesh_002
+  m_Name: PlungerTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +402,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8842720984674390512}
   m_Father: {fileID: 2165921303378024850}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -380,7 +469,7 @@ GameObject:
   - component: {fileID: 1023223588809002786}
   - component: {fileID: 1293542149039513381}
   m_Layer: 0
-  m_Name: Fluid
+  m_Name: Fluid Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +484,7 @@ Transform:
   m_GameObject: {fileID: 6326596179206965723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.04089006, y: 0.03650999, z: 0}
-  m_LocalScale: {x: 0.0032851927, y: 0.0001, z: 0.003128755}
+  m_LocalScale: {x: 0.003285193, y: 1, z: 0.003128755}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 727610013393800440}
@@ -540,7 +629,6 @@ MonoBehaviour:
   - {fileID: 7623068037075964408}
   - {fileID: 3509183028124418904}
   - {fileID: 5347734868458824455}
-  - {fileID: 1387171717358089807}
   SimulationBehaviours: []
 --- !u!114 &7623068037075964408
 MonoBehaviour:
@@ -603,5 +691,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   plungerTransform: {fileID: 2165921303378024850}
-  maxPlungerDrawValue: -0.02564
+  maxPlungerDrawValue: -0.028
   drawSpeed: 0.05
+  fluidGameObject: {fileID: 4576880549926507221}
+  plungerTipTransform: {fileID: 8842720984674390512}
+  syringeEndTransform: {fileID: 6673862740810723327}
+  plungerMaxTransform: {fileID: 661330824201785644}
+  animController: {fileID: 1532168289589823259}
+  fluidAnimation: {fileID: 7400000, guid: d82f1f2194be7a740b5232748dffa9fd, type: 2}

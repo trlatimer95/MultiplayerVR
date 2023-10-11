@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: maxPlungerDrawValue
       value: -0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: plungerTipTransform
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6653111227746631877, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_Name
       value: Syringe_Medium2
@@ -361,12 +365,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: NetworkedBehaviours.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
-      propertyPath: NetworkedBehaviours.Array.data[3]
-      value: 
-      objectReference: {fileID: 2958531702310066507}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
       value: 8394657836912946010
@@ -393,14 +393,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2169146783792028270, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
   m_PrefabInstance: {fileID: 4201552493017345796}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2958531702310066507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1387171717358089807, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
-  m_PrefabInstance: {fileID: 4201552493017345796}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
