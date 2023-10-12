@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5124975330683172102}
   - component: {fileID: 651247040736580747}
   m_Layer: 0
-  m_Name: Mesh_011
+  m_Name: PlungerTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4911657110124271059}
   m_Father: {fileID: 1430825506761988530}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,7 +96,7 @@ GameObject:
   - component: {fileID: 2611838734950576358}
   - component: {fileID: 1028539061977649888}
   m_Layer: 0
-  m_Name: Mesh_010
+  m_Name: Plunger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +180,7 @@ GameObject:
   - component: {fileID: 754326896066610800}
   - component: {fileID: 5741871113907170434}
   m_Layer: 0
-  m_Name: Mesh_012
+  m_Name: Syringe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,6 +252,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6412387715669720617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4911657110124271059}
+  m_Layer: 0
+  m_Name: PlungerTipTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4911657110124271059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412387715669720617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01982, y: 0.0282, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6509078399553581161}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4201552493017345796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,6 +291,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 661330824201785644, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0197
+      objectReference: {fileID: 0}
+    - target: {fileID: 661330824201785644, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00712
+      objectReference: {fileID: 0}
+    - target: {fileID: 727610013393800440, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 727610013393800440, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02797
+      objectReference: {fileID: 0}
     - target: {fileID: 2055666079461171575, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_Size.x
       value: 0.0047037182
@@ -301,15 +349,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.083096
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8112
+      value: 0.75392056
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.666672
+      value: 2.977
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalRotation.w
@@ -344,6 +392,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: fluidAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 760a22d0ce7fc1848b61faa725c57466, type: 2}
+    - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: plungerTransform
       value: 
       objectReference: {fileID: 1430825506761988530}
@@ -354,10 +406,34 @@ PrefabInstance:
     - target: {fileID: 5347734868458824455, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: plungerTipTransform
       value: 
+      objectReference: {fileID: 4911657110124271059}
+    - target: {fileID: 6211021519966006099, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.00304291
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211021519966006099, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0030114264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211021519966006099, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211021519966006099, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00005
       objectReference: {fileID: 0}
     - target: {fileID: 6653111227746631877, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_Name
       value: Syringe_Medium2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673862740810723327, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0199
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673862740810723327, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0286
       objectReference: {fileID: 0}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: Flags
