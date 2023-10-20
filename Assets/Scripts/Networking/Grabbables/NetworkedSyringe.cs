@@ -18,7 +18,7 @@ public class NetworkedSyringe : NetworkBehaviour
     [SerializeField] Animator animController;
     [SerializeField] AnimationClip fluidAnimation;
 
-    [Networked] private Vector3 localPlungerPosition { get; set; } = Vector3.zero;
+    [Networked] public Vector3 localPlungerPosition { get; set; } = Vector3.zero;
 
     private NetworkedGrabbable grabbable;
     private NetworkHandGrabber currentGrabber;
