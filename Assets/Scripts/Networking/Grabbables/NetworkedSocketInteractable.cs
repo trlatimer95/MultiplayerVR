@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 
 [OrderAfter(typeof(NetworkedGrabbable))]
 [RequireComponent(typeof(NetworkedGrabbable))]
@@ -10,9 +11,11 @@ using UnityEngine;
 public class NetworkedSocketInteractable : NetworkBehaviour
 {
     [SerializeField] public SocketType socketType;
-    [SerializeField] public Vector3 attachOffset;
 
-    private Transform followTransform;
+    public UnityEvent OnSocketedChanged; 
+
+    public Transform followTransform;
+
     private NetworkedSocketReceiver receiver;
 
     private NetworkedGrabbable grabbable;
@@ -22,6 +25,9 @@ public class NetworkedSocketInteractable : NetworkBehaviour
     public override void Spawned()
     {
         base.Spawned();
+
+        if (OnSocketedChanged == null)
+            OnSocketedChanged = new UnityEvent();
 
         grabbable = GetComponent<NetworkedGrabbable>();
         networkTransform = GetComponent<NetworkTransform>();
@@ -38,18 +44,20 @@ public class NetworkedSocketInteractable : NetworkBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (receiver == null || other.gameObject != receiver.gameObject) return;
+        if (receiver == null || other.gameObject != receiver.gameObject || !receiver.acceptedSocketTypes.Contains(socketType)) return;
 
-        if (!grabbable.IsGrabbed && followTransform == null)
+        if (!grabbable.IsGrabbed && followTransform == null) // Released within trigger
         {
-            receiver.AttachObject();
-            followTransform = receiver.attachTransform; // Switch to flag to avoid storing transform?
-            networkRigidbody.Rigidbody.isKinematic = true;          
+            receiver.AttachObject(this);
+            followTransform = receiver.attachTransform;
+            networkRigidbody.Rigidbody.isKinematic = true;
+            OnSocketedChanged.Invoke();
         }
         else if (grabbable.IsGrabbed && followTransform != null) // Grabbed again
         {
             receiver.DetachObject();
             followTransform = null;
+            OnSocketedChanged.Invoke();
         }
     }
 
@@ -74,11 +82,13 @@ public class NetworkedSocketInteractable : NetworkBehaviour
     void Follow(Transform followingtransform, Transform followedTransform)
     {
         followingtransform.position = followedTransform.position;
-        followingtransform.rotation = followedTransform.rotation; // may need to make networked
+        followingtransform.rotation = followedTransform.rotation;
     }
 }
 
 public enum SocketType
 {
-    Needle
+    NeedleSmall,
+    NeedleLarge,
+    Vial
 }

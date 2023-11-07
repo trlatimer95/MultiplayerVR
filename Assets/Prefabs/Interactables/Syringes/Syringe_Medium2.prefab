@@ -343,13 +343,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2593582213832608915, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0198
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593582213832608915, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0285
+      objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: 0.4719
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.y
@@ -357,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.977
+      value: 3.0564
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalRotation.w
@@ -434,6 +442,22 @@ PrefabInstance:
     - target: {fileID: 6673862740810723327, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0286
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Radius
+      value: 0.025769636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Center.x
+      value: -0.059179515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Center.y
+      value: 0.09361632
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Center.z
+      value: 0.00052663684
       objectReference: {fileID: 0}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: Flags

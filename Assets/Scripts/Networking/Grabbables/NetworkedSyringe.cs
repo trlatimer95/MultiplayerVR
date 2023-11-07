@@ -19,6 +19,13 @@ public class NetworkedSyringe : NetworkBehaviour
     [SerializeField] AnimationClip fluidAnimation;
 
     [Networked] public Vector3 localPlungerPosition { get; set; } = Vector3.zero;
+    [Networked] public bool DrawFluid { get; set; }
+    [Networked] public bool VialAttached { get; set; }
+
+    public MeshRenderer MeshRenderer;
+
+    [Networked(OnChanged = nameof(NetworkColorChanged))] 
+    public Color NetworkedColor { get; set; }
 
     private NetworkedGrabbable grabbable;
     private NetworkHandGrabber currentGrabber;
@@ -27,6 +34,13 @@ public class NetworkedSyringe : NetworkBehaviour
     private float previousInputValue = 0f;
     private bool drawPlunger = true;
     private float maxDistance;
+    private Material currentFluidMaterial;
+    private float currDistance = 0f;
+
+    private static void NetworkColorChanged(Changed<NetworkedSyringe> changed)
+    {
+        changed.Behaviour.MeshRenderer.material.color = changed.Behaviour.NetworkedColor;
+    }
 
     public override void Spawned()
     {
@@ -34,6 +48,8 @@ public class NetworkedSyringe : NetworkBehaviour
 
         if (animController == null)
             animController = GetComponentInChildren<Animator>();
+
+        MeshRenderer = fluidGameObject.GetComponentInChildren<MeshRenderer>();
 
         animController.speed = 0;
 
@@ -93,11 +109,13 @@ public class NetworkedSyringe : NetworkBehaviour
         CalculatePlungerLocation();
         MovePlunger();
 
-        DrawFluid();
+        DrawFluidVisuals();
     }
 
-    private void DrawFluid()
+    private void DrawFluidVisuals()
     {
+        if (!DrawFluid) return;
+
         if (plungerTransform.localPosition.y >= 0)
         {
             if (fluidGameObject.activeInHierarchy)
@@ -114,6 +132,8 @@ public class NetworkedSyringe : NetworkBehaviour
 
             // Play animation at normalized distance to get scale and position to match
             animController.Play(fluidAnimation.name, 0, normalizedDistance);
+
+            currDistance = normalizedDistance;           
         }       
     }
 
@@ -125,21 +145,39 @@ public class NetworkedSyringe : NetworkBehaviour
     private void CalculatePlungerLocation()
     {
         if (triggerInputValue == 0) return;
+        if (!VialAttached && drawPlunger) return;
 
         Vector3 targetPosition = Vector3.zero;
 
         // Draw Syringe
-        if (drawPlunger && plungerTransform.localPosition.y > maxPlungerDrawValue)
-            targetPosition = new Vector3(plungerTransform.localPosition.x, maxPlungerDrawValue, plungerTransform.localPosition.z);         
+        if (VialAttached && drawPlunger && plungerTransform.localPosition.y > maxPlungerDrawValue)
+        {
+            Debug.Log("Drawing plunger");
+            targetPosition = new Vector3(plungerTransform.localPosition.x, maxPlungerDrawValue, plungerTransform.localPosition.z);
+            if (plungerTransform.localPosition.y < 0 && !DrawFluid)
+                DrawFluid = true;               
+        }
+                     
         // Push Syringe
         else if (!drawPlunger && plungerTransform.localPosition.y < 0)
+        {
+            Debug.Log("Pushing plunger");
             targetPosition = new Vector3(plungerTransform.localPosition.x, 0f, plungerTransform.localPosition.z);
-
+            if (plungerTransform.localPosition.y >= 0 && DrawFluid)
+                DrawFluid = false;
+        }
+            
         // Move Plunger locally
         Vector3 translation = (targetPosition - plungerTransform.localPosition).normalized * drawSpeed * triggerInputValue * Runner.DeltaTime;
         plungerTransform.Translate(translation);
 
         // Save new position for network replication
         localPlungerPosition = plungerTransform.localPosition;
+    }
+
+    public void SetFluidColor(Material fluidMaterial)
+    {
+        fluidGameObject.GetComponentInChildren<Renderer>().material = fluidMaterial;
+        NetworkedColor = fluidMaterial.color;
     }
 }

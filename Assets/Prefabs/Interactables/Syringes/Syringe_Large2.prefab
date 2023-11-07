@@ -379,21 +379,29 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2593582213832608915, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593582213832608915, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0649
+      objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.38021886
+      value: 0.7075
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7705
+      value: 0.7695
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1153135
+      value: 2.9463
       objectReference: {fileID: 0}
     - target: {fileID: 2966820179536684114, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: m_LocalRotation.w
@@ -483,6 +491,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.064
       objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Radius
+      value: 0.030937552
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Center.x
+      value: 0.0005527437
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344631735034516579, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: m_Center.y
+      value: 0.15154278
+      objectReference: {fileID: 0}
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: Flags
       value: 2305
@@ -498,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 7830025733487070930, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
       value: 7123345710825382040
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053493098468819140, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: acceptedSocketTypes.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

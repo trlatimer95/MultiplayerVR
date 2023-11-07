@@ -738,7 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  acceptedSocketTypes: 01000000
+  acceptedSocketTypes: 00000000
   attachTransform: {fileID: 2593582213832608915}
   _Occupied: 0
 --- !u!1 &7003153328104557201
