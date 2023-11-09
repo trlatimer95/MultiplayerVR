@@ -50,24 +50,4 @@ public class Needle : NetworkBehaviour
                 currentAttachedSyringe.VialAttached = false;
         }                   
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Vial" && currentAttachedSyringe != null)
-    //        currentAttachedSyringe.DrawFluid = true;
-    //}
-
-    //private void SocketChanged()
-    //{
-    //    if (socket.followTransform != null)
-    //    {
-    //        NetworkedSyringe syringe = socket.followTransform.GetComponent<NetworkedSyringe>();
-    //        if (syringe != null)
-    //        {
-    //            currentAttachedSyringe = syringe;
-    //        }
-    //    }
-    //    else
-    //        currentAttachedSyringe = null;
-    //}
 }
