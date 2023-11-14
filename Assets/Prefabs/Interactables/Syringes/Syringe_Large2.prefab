@@ -520,6 +520,10 @@ PrefabInstance:
       value: 7123345710825382040
       objectReference: {fileID: 0}
     - target: {fileID: 9053493098468819140, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
+      propertyPath: acceptedSocketTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9053493098468819140, guid: 24febd4bc3751f14ca73ad73d5d21464, type: 3}
       propertyPath: acceptedSocketTypes.Array.data[0]
       value: 1
       objectReference: {fileID: 0}

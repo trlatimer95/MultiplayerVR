@@ -704,6 +704,10 @@ MonoBehaviour:
   animController: {fileID: 1532168289589823259}
   fluidAnimation: {fileID: 7400000, guid: d82f1f2194be7a740b5232748dffa9fd, type: 2}
   _localPlungerPosition: {x: 0, y: 0, z: 0}
+  _DrawFluid: 0
+  _VialAttached: 0
+  MeshRenderer: {fileID: 0}
+  _NetworkedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!135 &7344631735034516579
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -738,8 +742,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  acceptedSocketTypes: 00000000
+  acceptedSocketTypes: 0000000001000000
   attachTransform: {fileID: 2593582213832608915}
+  currentAttachedInteractable: {fileID: 0}
   _Occupied: 0
 --- !u!1 &7003153328104557201
 GameObject:
